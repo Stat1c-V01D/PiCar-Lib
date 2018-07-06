@@ -1,24 +1,28 @@
 #include <wiringPi.h>
-
-// LED-PIN - wiringPi-PIN 0 ist BCM_GPIO 17.
-// Wir müssen bei der Initialisierung mit wiringPiSetupSys die BCM-Nummerierung verwenden.
-// Wenn Sie eine andere PIN-Nummer wählen, verwenden Sie die BCM-Nummerierung, und
-// aktualisieren Sie die Eigenschaftenseiten – Buildereignisse – Remote-Postbuildereignisbefehl 
-// der den GPIO-Export für die Einrichtung für wiringPiSetupSys verwendet.
-#define	LED	17
+#include "PWM.h"
+#include<stdio.h>
+#include<iostream>
 
 int main(void)
 {
-	wiringPiSetupSys();
-
-	pinMode(LED, OUTPUT);
-
-	while (true)
+	try
 	{
-		digitalWrite(LED, HIGH);  // Ein
-		delay(500); // ms
-		digitalWrite(LED, LOW);	  // Aus
-		delay(500);
+		PWM * pwm = new PWM();
+		pwm->frequency(60);
+		for (int i = 0; i < 16; i++)
+		{
+			cout << "CH: " << i << endl;
+			delay(5);
+			for (int j = 0; j <= 4096; j++)
+			{
+				pwm->write(i, 0, j);
+				//cout << "PWM: " << j << endl;
+				delayMicroseconds(30);
+			}
+		}
 	}
-	return 0;
+	catch (const std::exception&e)
+	{
+		cout << &e << endl;
+	}
 }

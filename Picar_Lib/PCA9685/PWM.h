@@ -7,9 +7,22 @@ class PWM
 {
 public:
 	PWM();
+	void PWM_init(int bus_number = -1, int address = 0x40);
+	void setup();
+	void _write_byte_data(int reg, int value);
+	int _read_byte_data(int reg);
+	void _check_i2c();
+	int rt_frequency();
+	void frequency(int freq);
+	void write(int channel, int on, int off);
+	void write_all_value(int on, int off);
+	int map(int x, int in_min, int in_max, int out_min, int out_max);
+
+	/* Deprecated Python Code for SMBus compatibility
 	int _get_bus();
 	string _get_pi_ver();
-	void setup();
+	*/
+
 	virtual ~PWM();
 
 	int _MODE1 = 0x00,
@@ -32,18 +45,27 @@ public:
 		_INVRT = 0x10,
 		_OUTDRV = 0x04;
 
-
-	string RPI_REVISION_0[1] = { "900092" };
-	string RPI_REVISION_1_MODULE_B[9] = { "Beta", "0002", "0003", "0004", "0005", "0006", "000d", "000e", "000f" };
-	string RPI_REVISION_1_MODULE_A[3] = { "0007", "0008", "0009" };
-	string RPI_REVISION_1_MODULE_BP{ "0010, 0013" };
-	string RPI_REVISION_1_MODULE_AP{ "0012" };
-	string RPI_REVISION_2{ "a01041, a21041" };
-	string RPI_REVISION_3{ "a02082, a22082" };  //TODO: Find suitable string array for compare and find
+	/* Deprecated Python Code for SMBus compatibility
+	string RPI_REVISION[20] = { "900092", //RPI_REVISION_0
+								"Beta", "0002", "0003", "0004", "0005", "0006", "000d", "000e", "000f", //RPI_REVISION_1_MODULE_B
+								"0007", "0008", "0009", //RPI_REVISION_1_MODULE_A
+								"0010, 0013", //RPI_REVISION_1_MODULE_BP
+								"0012",  //RPI_REVISION_1_MODULE_AP
+								"a01041", "a21041", //RPI_REVISION_2
+								"a02082", "a22082" }; //RPI_REVISION_3
+	*/
 
 	string _DEBUG_INFO = "DEBUG 'PCA9685.py':";
 
 	bool _DEBUG = false;
 
+
+private:
+	int _ADDRESS = 0x00,
+		_BUS = 0,
+		_FREQUENCY = 0,
+		_DEVICE;
+
+protected:
 };
 
