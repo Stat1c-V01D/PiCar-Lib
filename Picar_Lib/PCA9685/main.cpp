@@ -1,10 +1,12 @@
 #include <wiringPi.h>
 #include "PWM.h"
+#include "Servo.h"
 #include<stdio.h>
 #include<iostream>
 
 int main(void)
 {
+	/*
 	try
 	{
 		PWM * pwm = new PWM();
@@ -20,6 +22,15 @@ int main(void)
 				delayMicroseconds(30);
 			}
 		}
+	}
+	catch (const std::exception&e)
+	{
+		cout << &e << endl;
+	}
+	*/
+	try
+	{
+		install();
 	}
 	catch (const std::exception&e)
 	{

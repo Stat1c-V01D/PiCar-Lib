@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Picar_Lib", "Picar_Lib\Pica
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PCA9685", "PCA9685\PCA9685.vcxproj", "{ED9D6ECA-EC1D-4329-938B-B3AC244545CD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "System", "System\System.vcxproj", "{471EE355-6D2E-4083-9F79-53BB7528E760}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TB6612", "TB6612\TB6612.vcxproj", "{F28009B2-C92F-4F2C-9EE4-4D79199920E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -21,6 +25,14 @@ Global
 		{ED9D6ECA-EC1D-4329-938B-B3AC244545CD}.Debug|ARM.Build.0 = Debug|ARM
 		{ED9D6ECA-EC1D-4329-938B-B3AC244545CD}.Release|ARM.ActiveCfg = Release|ARM
 		{ED9D6ECA-EC1D-4329-938B-B3AC244545CD}.Release|ARM.Build.0 = Release|ARM
+		{471EE355-6D2E-4083-9F79-53BB7528E760}.Debug|ARM.ActiveCfg = Debug|ARM
+		{471EE355-6D2E-4083-9F79-53BB7528E760}.Debug|ARM.Build.0 = Debug|ARM
+		{471EE355-6D2E-4083-9F79-53BB7528E760}.Release|ARM.ActiveCfg = Release|ARM
+		{471EE355-6D2E-4083-9F79-53BB7528E760}.Release|ARM.Build.0 = Release|ARM
+		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Debug|ARM.Build.0 = Debug|ARM
+		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Release|ARM.ActiveCfg = Release|ARM
+		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Release|ARM.Build.0 = Release|ARM
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

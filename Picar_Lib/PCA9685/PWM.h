@@ -3,11 +3,14 @@
 #include<cstdio>
 using namespace std;
 
+//TODO: DEBUG messages
+//TODO: bus_number is Python artifact and not needed anymore --- Removal pending
+
 class PWM
 {
 public:
-	PWM();
-	void PWM_init(int bus_number = -1, int address = 0x40);
+	PWM(int bus_number = -1, int address = 0x40);
+	void PWM_init(int bus_number , int address);
 	void setup();
 	void _write_byte_data(int reg, int value);
 	int _read_byte_data(int reg);
@@ -16,7 +19,7 @@ public:
 	void frequency(int freq);
 	void write(int channel, int on, int off);
 	void write_all_value(int on, int off);
-	int map(int x, int in_min, int in_max, int out_min, int out_max);
+	double map(int x, int in_min, int in_max, int out_min, int out_max);
 
 	/* Deprecated Python Code for SMBus compatibility
 	int _get_bus();

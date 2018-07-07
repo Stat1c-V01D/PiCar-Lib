@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{ed9d6eca-ec1d-4329-938b-b3ac244545cd}</ProjectGuid>
+    <ProjectGuid>{471ee355-6d2e-4083-9f79-53bb7528e760}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>PCA9685</RootNamespace>
+    <RootNamespace>System</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
@@ -54,12 +54,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PWM.cpp" />
-    <ClCompile Include="Servo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PWM.h" />
-    <ClInclude Include="Servo.h" />
+    <ClInclude Include="sys.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

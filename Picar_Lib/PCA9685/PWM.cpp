@@ -7,12 +7,13 @@
 #include<fstream>
 #include<stdio.h>
 #include<iostream>
-
+//TODO: DEBUG messages
+//TODO: bus_number is Python artifact and not needed anymore --- Removal pending
 using namespace std;
 
-PWM::PWM()
+PWM::PWM(int bus_number, int address)
 {
-	PWM_init();
+	PWM_init(bus_number, address);
 }
 
 void PWM::PWM_init(int bus_number, int address)
@@ -124,39 +125,42 @@ void PWM::setup()
 	write_all_value(0, 0);
 	_write_byte_data(_MODE2, _OUTDRV);
 	_write_byte_data(_MODE1, _ALLCALL);
-	delay(0.005);
+	delayMicroseconds(50);
 	int mode1 = _read_byte_data(_MODE1);
 	mode1 = mode1 & ~_SLEEP;
 	_write_byte_data(_MODE1, mode1);
-	delay(0.005);
+	delayMicroseconds(50);
 	_FREQUENCY = 60;
 }
 
 void PWM::_write_byte_data(int reg, int value)
 {
+	int error = 0;
 	try
 	{
-		int error = wiringPiI2CWriteReg8(_DEVICE, reg, value); //No proper Error Handling yet
+		error = wiringPiI2CWriteReg8(_DEVICE, reg, value); //No proper Error Handling yet
 	}
 	catch (const std::exception&e)
 	{
 		cout << &e << endl;
+		cout << error << endl;
 		_check_i2c();
 	}
 }
 
 int PWM::_read_byte_data(int reg)
 {
+	int value;
 	try
 	{
-		int error = wiringPiI2CReadReg8(_DEVICE, reg); //No proper Error Handling yet
+		value = wiringPiI2CReadReg8(_DEVICE, reg); //No proper Error Handling yet
 	}
 	catch (const std::exception&e)
 	{
 		cout << &e << endl;
 		_check_i2c();
 	}
-	
+	return value;
 }
 
 void PWM::_check_i2c()
@@ -172,17 +176,17 @@ int PWM::rt_frequency()
 void PWM::frequency(int freq)
 {
 	_FREQUENCY = freq;
-	float prescale_val = 25000000.0;
+	double prescale_val = 25000000.0;
 	prescale_val /= 4096.0;
 	prescale_val /= float(freq);
 	prescale_val -= 1.0;
-	float prescale = floor(prescale_val + 0.5);
+	double prescale = floor(prescale_val + 0.5);
 	int old_mode = _read_byte_data(_MODE1);
 	int new_mode = (old_mode & 0x7F) | 0x10;
 	_write_byte_data(_MODE1, new_mode);
 	_write_byte_data(_PRESCALE, int(floor(prescale)));
 	_write_byte_data(_MODE1, old_mode);
-	delay(0.005);
+	delay(50);
 	_write_byte_data(_MODE1, old_mode);
 }
 
@@ -202,7 +206,7 @@ void PWM::write_all_value(int on, int off)
 	_write_byte_data(_ALL_LED_OFF_H, off >> 8);
 }
 
-int PWM::map(int x, int in_min, int in_max, int out_min, int out_max)
+double PWM::map(int x, int in_min, int in_max, int out_min, int out_max)
 {
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
