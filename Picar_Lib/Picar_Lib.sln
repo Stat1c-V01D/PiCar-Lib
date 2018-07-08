@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "System", "System\System.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TB6612", "TB6612\TB6612.vcxproj", "{F28009B2-C92F-4F2C-9EE4-4D79199920E9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "back_wheels", "back_wheels\back_wheels.vcxproj", "{B51C78BD-4EE4-429E-A355-7CFBEC441327}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filedb", "filedb\filedb.vcxproj", "{EE427E79-2F58-48BE-8EC2-51551277B7A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -33,6 +37,14 @@ Global
 		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Debug|ARM.Build.0 = Debug|ARM
 		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Release|ARM.ActiveCfg = Release|ARM
 		{F28009B2-C92F-4F2C-9EE4-4D79199920E9}.Release|ARM.Build.0 = Release|ARM
+		{B51C78BD-4EE4-429E-A355-7CFBEC441327}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B51C78BD-4EE4-429E-A355-7CFBEC441327}.Debug|ARM.Build.0 = Debug|ARM
+		{B51C78BD-4EE4-429E-A355-7CFBEC441327}.Release|ARM.ActiveCfg = Release|ARM
+		{B51C78BD-4EE4-429E-A355-7CFBEC441327}.Release|ARM.Build.0 = Release|ARM
+		{EE427E79-2F58-48BE-8EC2-51551277B7A7}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EE427E79-2F58-48BE-8EC2-51551277B7A7}.Debug|ARM.Build.0 = Debug|ARM
+		{EE427E79-2F58-48BE-8EC2-51551277B7A7}.Release|ARM.ActiveCfg = Release|ARM
+		{EE427E79-2F58-48BE-8EC2-51551277B7A7}.Release|ARM.Build.0 = Release|ARM
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

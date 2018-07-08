@@ -3,7 +3,7 @@ class TB6612
 {
 public:
 	TB6612(int direction_channel);
-	void TB6612_init(int direction_channel, int pwm=-1,bool offset = true);
+	void TB6612_init(int direction_channel, int pwm =-1,bool offset = true);
 	int rt_speed();
 	void speed(int speed);
 	void forward();
@@ -16,8 +16,9 @@ public:
 	virtual ~TB6612();
 
 	int _DIRECTION_CHANNEL,
-		_PWM,
-		_SPEED;
+		_SPWM,
+		_SPEED,
+		_PWM;
 
 	bool _OFFSET,
 		_FORWARD_OFFSET,
