@@ -6,6 +6,8 @@
 #include<vector>
 #include <algorithm>
 
+//TODO: Finish template return/conversion of Input/Output data
+//TODO: Whole fstream operation might need to be dynamic instead of static to improve overhead <<---- Re-thinking needs to be done
 using namespace std;
 
 filedb::filedb(string db)
@@ -57,8 +59,6 @@ string filedb::get(string name, string def_value)
 			value = tmp;
 			flag = true;
 		}
-		if (flag) return value;
-		else return def_value;
 		data.clear();
 		conf.close();
 	}
@@ -66,7 +66,8 @@ string filedb::get(string name, string def_value)
 	{
 		//cout << &e << endl;
 	}
-	//return def_value;
+	if (flag) return value;
+	else return def_value;
 }
 
 void filedb::set(string name, string value)

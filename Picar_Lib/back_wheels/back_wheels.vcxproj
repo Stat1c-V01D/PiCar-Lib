@@ -52,10 +52,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="back_wheels.cpp" />
+    <ClCompile Include="filedb.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PWM.cpp" />
+    <ClCompile Include="TB6612.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="back_wheels.h" />
+    <ClInclude Include="filedb.h" />
+    <ClInclude Include="PWM.h" />
+    <ClInclude Include="TB6612.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

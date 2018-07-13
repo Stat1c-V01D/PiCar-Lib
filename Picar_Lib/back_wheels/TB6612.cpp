@@ -1,13 +1,15 @@
 #include "TB6612.h"
+#include "PWM.h"
 #include<wiringPi.h>
 #include<stdlib.h>
 #include<stdio.h>
 
-//TODO: Fix limited compatibility
+//TODO: Fix limited compatibility with PWM class not working
+//TODO:Check all classes and subclasses for function on Rpi
 
 TB6612::TB6612(int direction_channel, int pwm, bool offset)
 {
-	TB6612_init(direction_channel,pwm,offset);
+	TB6612_init(direction_channel, pwm, offset);
 }
 
 void TB6612::TB6612_init(int direction_channel, int pwm, bool offset)
@@ -29,7 +31,7 @@ int TB6612::rt_speed()
 
 void TB6612::speed(int speed)
 {
-	if (speed != 'NONE')
+	if (speed != -1)
 	{
 		if (speed > 100) speed = 100;
 		if (speed < 0) speed = 0;
@@ -80,12 +82,12 @@ int TB6612::rt_pwm()
 	return _PWM;
 }
 
-void TB6612::pwm(int pwm)
+void TB6612::pwm(int speed)
 {
-	_SPWM = pwm;
-	_PWM = pwm;
-	//int speed_map = pwm * 1023 / 100; //Mapping 0 to 100 speed over 0 to 1023 pwm value
-	//_PWM = speed_map;
+	PWM pwm = PWM();
+	double pulse_width = pwm.map(speed, 0, 100, 0, 4095);
+	_PWM = int(pulse_width);
+	pwm.write(_SPWM, 0, _PWM);
 }
 
 
