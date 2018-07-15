@@ -2,7 +2,6 @@
 #include<wiringPi.h>
 #include<time.h>
 #include<math.h>
-#include<string>
 #include<stdio.h>
 #include<iostream>
 #include<string>
@@ -28,7 +27,7 @@ void Servo::Servo_init(int channel, int offset, bool lock, int bus_number, int a
 	_OFFSET = offset;
 	pwm = PWM(bus_number, address);
 	_FREQUENCY = pwm.rt_frequency();
-	write(90);
+	//write(90);
 }
 
 void Servo::setup() //TODO: Somewhat of an artifact -- Removal pending
@@ -36,14 +35,17 @@ void Servo::setup() //TODO: Somewhat of an artifact -- Removal pending
 	//pwm->setup();
 }
 
+
+//TODO: Not working properly -- Angle to analog semms fucked up
 int Servo::_angle_to_analog(int angle)
 {
 	pulse_width = pwm.map(angle, 0, 180, _MIN_PULSE_WIDTH, _MAX_PULSE_WIDTH);
-	analog_value = pulse_width / 1000000;
-	analog_value = analog_value * _FREQUENCY * 4096;
-	int cast_anlg_val = analog_value;
+	analog_value = pwm.map(pulse_width, _MIN_PULSE_WIDTH, _MAX_PULSE_WIDTH, _MIN_PULSE_WIDTH, _MAX_PULSE_WIDTH);
+	//div = 1000000 * _FREQUENCY * 4096;
+	//analog_value = pulse_width / div;
+	//int cast_anlg_val = analog_value;
 	//analog_value = int(pulse_width) / 1000000 * _FREQUENCY * 4096;
-	return cast_anlg_val;
+	return analog_value;
 }
 
 int Servo::rt_frequency()
@@ -88,20 +90,22 @@ void Servo::write(int angle)
 
 Servo::~Servo()
 {
-
+	pwm.write(_CHANNEL, 0, 0);
 }
 
 void test()
 {
 	Servo servo = Servo(0);
 	//servo->setup(); //TODO: Somewhat of an artifact -- Removal pending
-	for (int i = 0; i <= 180; i += 5)
+	servo.write(90);
+	delay(2000);
+	for (int i = 0; i <= 180; i += 10)
 	{
 		cout << i << endl;
 		servo.write(i);
 		delay(200);
 	}
-	for (int i = 180; i <= 0; i -= 5)
+	for (int i = 180; i <= 0; i -= 10)
 	{
 		cout << i << endl;
 		servo.write(i);

@@ -22,7 +22,7 @@ T fromString(const string& s) {
 		ss >> t;
 		return t;
 	}
-};
+}
 
 template <class T>
 string toString(T in) {
@@ -38,5 +38,4 @@ string toString(T in) {
 		ss << in;
 		return ss.str();
 	}
-};
-
+}

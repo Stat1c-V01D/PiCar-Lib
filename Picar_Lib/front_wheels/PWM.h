@@ -19,7 +19,7 @@ public:
 	void frequency(int freq);
 	void write(int channel, int on, int off);
 	void write_all_value(int on, int off);
-	int map(int x, int in_min, int in_max, int out_min, int out_max);
+	double map(int x, int in_min, int in_max, int out_min, int out_max);
 
 	/* Deprecated Python Code for SMBus compatibility
 	int _get_bus();
@@ -64,9 +64,9 @@ public:
 
 
 private:
-	int _ADDRESS = 0x00,
-		_BUS = 0,
-		_FREQUENCY = 0,
+	int _ADDRESS,
+		_BUS,
+		_FREQUENCY,
 		_DEVICE;
 
 protected:

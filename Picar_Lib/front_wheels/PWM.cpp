@@ -125,11 +125,11 @@ void PWM::setup()
 	write_all_value(0, 0);
 	_write_byte_data(_MODE2, _OUTDRV);
 	_write_byte_data(_MODE1, _ALLCALL);
-	delayMicroseconds(50);
+	delayMicroseconds(5);
 	int mode1 = _read_byte_data(_MODE1);
 	mode1 = mode1 & ~_SLEEP;
 	_write_byte_data(_MODE1, mode1);
-	delayMicroseconds(50);
+	delayMicroseconds(5);
 	_FREQUENCY = 60;
 }
 
@@ -186,8 +186,8 @@ void PWM::frequency(int freq)
 	_write_byte_data(_MODE1, new_mode);
 	_write_byte_data(_PRESCALE, int(floor(prescale)));
 	_write_byte_data(_MODE1, old_mode);
-	delay(50);
-	_write_byte_data(_MODE1, old_mode);
+	delay(5);
+	_write_byte_data(_MODE1, old_mode | 0x80);
 }
 
 void PWM::write(int channel, int on, int off)
@@ -206,7 +206,7 @@ void PWM::write_all_value(int on, int off)
 	_write_byte_data(_ALL_LED_OFF_H, off >> 8);
 }
 
-int PWM::map(int x, int in_min, int in_max, int out_min, int out_max)
+double PWM::map(int x, int in_min, int in_max, int out_min, int out_max)
 {
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

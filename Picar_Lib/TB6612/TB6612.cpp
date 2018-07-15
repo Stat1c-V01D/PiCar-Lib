@@ -18,7 +18,7 @@ void TB6612::TB6612_init(int direction_channel, int pwm, bool offset)
 	_FORWARD_OFFSET = offset;
 	_BACKWARD_OFFSET != offset;
 	_SPEED = 0;
-	system("sudo wiringPiSetupGpio()");
+	wiringPiSetupGpio();
 	pinMode(direction_channel, OUTPUT);
 }
 
@@ -93,37 +93,38 @@ TB6612::~TB6612()
 {
 }
 
-
-void test()
+/* 
+void test() //Deprecated Code -- Artifact
 {
+	TB6612 motorA = TB6612(23);
+	TB6612 motorB = TB6612(24);
 	int a_pwm = 27,
 		b_pwm = 22;
 	pinMode(a_pwm, OUTPUT);
 	pinMode(b_pwm, OUTPUT);
-	TB6612 motorA = TB6612(17);
-	TB6612 motorB = TB6612(18);
 	motorA.forward();
-	for (int i = 0; i < 101; i++)
+	for (int i = 1; i < 101; i++)
 	{
 		motorA.speed(i);
 		pwmWrite(a_pwm, (motorA.rt_pwm() * 1023 / 100));
 	}
 	motorA.backward();
-	for (int i = 0; i < 101; i++)
+	for (int i = 1; i < 101; i++)
 	{
 		motorA.speed(i);
 		pwmWrite(a_pwm, (motorA.rt_pwm() * 1023 / 100));
 	}
 	motorB.forward();
-	for (int i = 0; i < 101; i++)
+	for (int i = 1; i < 101; i++)
 	{
 		motorB.speed(i);
 		pwmWrite(b_pwm, (motorB.rt_pwm() * 1023 / 100));
 	}
 	motorB.backward();
-	for (int i = 0; i < 101; i++)
+	for (int i = 1; i < 101; i++)
 	{
 		motorB.speed(i);
 		pwmWrite(b_pwm, (motorB.rt_pwm() * 1023 / 100));
 	}
 }
+*/

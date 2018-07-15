@@ -1,9 +1,11 @@
 #pragma once
-class TB6612
+#include "PWM.h"
+
+class TB6612 :public PWM
 {
 public:
-	TB6612(int direction_channel = -1, int pwm = -1, bool offset = true);
-	void TB6612_init(int direction_channel, int pwm, bool offset);
+	TB6612(int direction_channel = -1, int pwm_channel = -1, bool offset = true);
+	void TB6612_init(int direction_channel, int pwm_channel, bool offset);
 	int rt_speed();
 	void speed(int speed);
 	void forward();
@@ -16,13 +18,17 @@ public:
 	virtual ~TB6612();
 
 	int _DIRECTION_CHANNEL,
-		_SPWM,
+		_CPWM,
 		_SPEED,
-		_PWM;
+		_PWM,
+		_PULSE;
 
 	bool _OFFSET,
 		_FORWARD_OFFSET,
 		_BACKWARD_OFFSET;
+
+	PWM drive_pwm = PWM();
 };
 
-void test();
+//void test();
+int btoInt(bool in);

@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{471ee355-6d2e-4083-9f79-53bb7528e760}</ProjectGuid>
+    <ProjectGuid>{e6cb975c-9ef3-419c-a70f-7e34dae8b214}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>System</RootNamespace>
+    <RootNamespace>front_wheels</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
@@ -37,10 +37,8 @@
       <LibraryDependencies>wiringPi</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent>
-      <Command>
-      </Command>
-      <Message>
-      </Message>
+      <Command>gpio export 17 out</Command>
+      <Message>export pin 17 using the gpio utility so that we can execute the blink program without sudo</Message>
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -53,10 +51,17 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="filedb.cpp" />
+    <ClCompile Include="front_wheels.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PWM.cpp" />
+    <ClCompile Include="Servo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sys.h" />
+    <ClInclude Include="filedb.h" />
+    <ClInclude Include="front_wheels.h" />
+    <ClInclude Include="PWM.h" />
+    <ClInclude Include="Servo.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemDefinitionGroup />

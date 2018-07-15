@@ -14,16 +14,14 @@
 
 int main(void)
 {
-	wiringPiSetupSys();
+	wiringPiSetupGpio();
 
-	pinMode(LED, OUTPUT);
+	pinMode(LED, INPUT);
 
 	while (true)
 	{
-		digitalWrite(LED, HIGH);  // Ein
-		delay(500); // ms
-		digitalWrite(LED, LOW);	  // Aus
-		delay(500);
+		digitalRead(LED);  // Ein
+		delay(5000); // ms
 	}
 	return 0;
 }

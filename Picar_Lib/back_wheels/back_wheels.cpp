@@ -1,9 +1,8 @@
 #include "back_wheels.h"
-#include "PWM.h"
 #include "filedb.h"
 #include "TB6612.h"
 #include "utilities.h"
-//TODO: Further testing of all connected classes
+
 
 back_wheels::back_wheels(string db)
 {
@@ -13,9 +12,8 @@ back_wheels::back_wheels(string db)
 void back_wheels::init(string db)
 {
 	config = filedb(db);
-	_FORWARD_A = fromString<bool>(config.get("forward_A", "1"));
-	_FORWARD_B = fromString<bool>(config.get("forward_B", "1"));
-	pwm = PWM();
+	_FORWARD_A = fromString<bool>(config.get("forward_A", "true"));
+	_FORWARD_B = fromString<bool>(config.get("forward_B", "true"));
 	left_wheel = TB6612(_MOTOR_A, _PWM_A, _FORWARD_A);
 	right_wheel = TB6612(_MOTOR_B, _PWM_B, _FORWARD_B);
 	_SPEED = 0;
